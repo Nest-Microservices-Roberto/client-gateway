@@ -3,6 +3,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { envs } from './config';
 import { RpcCustomExcpetionFilter } from './common';
+import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const logger = new Logger('Main-Gateway');
