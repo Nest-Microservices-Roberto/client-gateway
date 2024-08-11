@@ -22,8 +22,14 @@ export class OrdersController {
   ) {}
 
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.ordersClient.send('createOrder', createOrderDto);
+  async create(@Body() createOrderDto: CreateOrderDto) {
+    try {
+      return await firstValueFrom(
+        this.ordersClient.send('createOrder', createOrderDto),
+      );
+    } catch (error) {
+      throw new RpcException(error);
+    }
   }
 
   @Get()
